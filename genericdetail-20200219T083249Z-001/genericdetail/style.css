@@ -30,3 +30,6 @@ body{
 .hide {
   display: none !important;
 }
+.flex{
+  display: flex;
+}
