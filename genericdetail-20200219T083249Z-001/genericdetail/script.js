@@ -27,13 +27,14 @@ function left_section(data,data2){
   ab=data2.response.data;
    
   for(let r of data.config.main_section_left.rows){
+    i++;
     if(!responses(r.rhs,ab) || responses(r.rhs,ab)==''){ 
      
     }
     else{
     if(r.edit){
       console.log("yes")
-     i++;
+     
       let row = document.createElement('div');  
       row.className = 'row';
       row.innerHTML = `<div class="col-sm-3">${r.lhs}</div>
@@ -65,55 +66,120 @@ function editr(no){
   document.getElementById(`edit${no}`).disabled = false;
 }
 async function show(b,r){
-  console.log(b);
-  console.log(dataconfigglobal.config.main_section_left.rows[b].edit.data_submit.api)
-  console.log(dataconfigglobal.config.main_section_left.rows[b].edit.data_submit.method)
-  // console.log(b);  
+  d=b-1;
+  console.log(dataconfigglobal.config.main_section_left.rows[d].edit)
+  console.log(d);
   var a=document.querySelector(`.edits${b}`).value;
+  console.log(a.length);
+  let flag=1;
+  if(dataconfigglobal.config.main_section_left.rows[d].edit.constraints){
+  if(dataconfigglobal.config.main_section_left.rows[d].edit.constraints.min_length){
+    if(a.length<dataconfigglobal.config.main_section_left.rows[d].edit.constraints.min_length || a.length>dataconfigglobal.config.main_section_left.rows[d].edit.constraints.max_length){
+      flag=0;
+      console.log(flag)
+    }
+    else{
+      flag=1;
+    }
+  }
+  console.log(flag);
+  if(dataconfigglobal.config.main_section_left.rows[d].edit.constraints.min){
+    if(a<dataconfigglobal.config.main_section_left.rows[d].edit.constraints.min || a>dataconfigglobal.config.main_section_left.rows[d].edit.constraints.max){
+      flag=0;
+    }
+    else{
+      flag=1;
+    }
+  }}
+  console.log(flag);
+  console.log(b);
+  console.log(dataconfigglobal.config.main_section_left.rows[d].edit.data_submit.api)
+  console.log(dataconfigglobal.config.main_section_left.rows[d].edit.data_submit.method)
+  // console.log(b);  
+  
+  
+  // if(a.length<23){
+  //   console.log('no');
+  //   alert('not passing constraints');
+  // }
+  // else{
+  if(flag==1){
   console.log(a);
   console.log(r);
-  var d=r;
-  console.log(d);
   var dt = {[r] : a};
   console.log(dt); 
-  const response = await fetch(dataconfigglobal.config.main_section_left.rows[b].edit.data_submit.api,{
-  method:dataconfigglobal.config.main_section_left.rows[b].edit.data_submit.method,
+  const response = await fetch(dataconfigglobal.config.main_section_left.rows[d].edit.data_submit.api,{
+  method:dataconfigglobal.config.main_section_left.rows[d].edit.data_submit.method,
   headers:{
        'Content-Type': 'application/json'
      },
      body:JSON.stringify(dt)
    }); 
    console.log(response);
-  
-  
+   
+  }
+  else{
+    alert('wrong constraints');
+  }
+  document.querySelector(`.edits${b}`).disabled = true;
 }
+// }
 async function sho(b,r){
-  console.log(dataconfigglobal.config.main_section_right.rows[b].edit.data_submit.api)
-  console.log(dataconfigglobal.config.main_section_right.rows[b].edit.data_submit.method)
-  console.log(b);  
+  console.log(b);
+  d=b-1;
+  console.log(dataconfigglobal.config.main_section_right.rows[d])
+  console.log(d);  
   var a=document.querySelector(`.edit${b}`).value;
+  console.log(a.length);
+  let flag=1;
+  console.log(dataconfigglobal.config.main_section_right.rows[d].edit.constraints.min_length)
+  if(dataconfigglobal.config.main_section_right.rows[d].edit.constraints){
+  if(dataconfigglobal.config.main_section_right.rows[d].edit.constraints.min_length){
+    if(a.length<dataconfigglobal.config.main_section_right.rows[d].edit.constraints.min_length || a.length>dataconfigglobal.config.main_section_right.rows[d].edit.constraints.max_length){
+      flag=0;
+      console.log(flag)
+    }
+    else{
+      flag=1;
+    }
+  }
+  console.log(flag);
+  if(dataconfigglobal.config.main_section_right.rows[d].edit.constraints.min){
+    if(a<dataconfigglobal.config.main_section_right.rows[d].edit.constraints.min || a>dataconfigglobal.config.main_section_right.rows[d].edit.constraints.max){
+      flag=0;
+    }
+    else{
+      flag=1;
+    }
+  }}
+  console.log(flag);
+  if(flag==1){
   console.log(a);
   console.log(r);
-  var d=r;
-  console.log(d);
   var dt = {[r] : a};
   console.log(dt); 
-  const response = await fetch(dataconfigglobal.config.main_section_right.rows[b].edit.data_submit.api,{
-  method:dataconfigglobal.config.main_section_right.rows[b].edit.data_submit.method,
+  const response = await fetch(dataconfigglobal.config.main_section_right.rows[d].edit.data_submit.api,{
+  method:dataconfigglobal.config.main_section_right.rows[d].edit.data_submit.method,
   headers:{
        'Content-Type': 'application/json'
      },
      body:JSON.stringify(dt)
    }); 
    console.log(response);
-  
-  
+   
+  }
+  else{
+    alert('wrong constraints');
+  }
+  document.querySelector(`.edit${b}`).disabled = true;
 }
+// }
 function right_section(data,data2){
   document.querySelector('.right_title').innerHTML=`${data2.response.data.section_right_title}`;
   ab=data2.response.data;
   let i=0;
   for(let r of data.config.main_section_right.rows){
+    i++;
     console.log(r);
     if(!responses(r.rhs,ab) || responses(r.rhs,ab)==''){
     
@@ -122,7 +188,7 @@ function right_section(data,data2){
     else{
       if(r.edit){
         console.log("yes")
-        i++;
+        
          let row = document.createElement('div');  
          row.className = 'row';
          row.innerHTML = `<div class="col-sm-3">${r.lhs}</div>
@@ -133,6 +199,8 @@ function right_section(data,data2){
                        <div><br>
                     <br></div>`;
          document.querySelector('.container-right').appendChild(row);
+         document.getElementById(`edit${i}`).setAttribute("type",r.edit.data_type);
+         document.getElementById(`edit${i}`).setAttribute("minlength",r.edit.constraints.min);
     }
     else{
       let row = document.createElement('div');
