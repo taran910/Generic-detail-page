@@ -119,7 +119,7 @@ async function show(b,r){
    
   }
   else{
-    alert('wrong constraints');
+    alert('your data did not pass the constraints');
   }
   document.querySelector(`.edits${b}`).disabled = true;
 }
@@ -169,7 +169,7 @@ async function sho(b,r){
    
   }
   else{
-    alert('wrong constraints');
+    alert('your data did not pass the constraints');
   }
   document.querySelector(`.edit${b}`).disabled = true;
 }
