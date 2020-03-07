@@ -11,15 +11,31 @@ async function getapi(url){
   }
   var data2 = await resp.json();
   console.log(data);
-  gettitle(data2);
+  gettitle(data,data2);
+  getsubtitle(data,data2);
   left_section(data,data2);
   right_section(data,data2);
   bottom_array(data.config.array_sections,data2);
 }
 
 getapi(api_url);
-function gettitle(data){
-  document.querySelector('.titl').innerHTML=`${data.response.data.title}`;
+function gettitle(data,data2){
+  if(!data2.response.data[data.config.title] || data2.response.data[data.config.title]==''){
+
+  }
+  else{
+
+  
+  document.querySelector('.titl').innerHTML=`${data2.response.data[data.config.title]}`;
+  }
+}
+function getsubtitle(data,data2){
+  if(!data2.response.data[data.config.subtitle] || data2.response.data[data.config.subtitle]==''){
+
+  }
+  else{
+    document.querySelector('.sub').innerHTML=`${data2.response.data[data.config.subtitle]}`;
+  }
 }
 function left_section(data,data2){
   let i=0;
