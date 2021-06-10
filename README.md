@@ -6,7 +6,7 @@ Here we have used a sample API with some data in it and used that API to get dat
 
 Below is the Link for running application:
 
-
+https://site-944328.easy-ci.com/
 
 Also Another API fetch application is made using Angular:
 
