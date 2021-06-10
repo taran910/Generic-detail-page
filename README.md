@@ -4,6 +4,10 @@ This project uses HTML, CSS and JS for fetching data from an API and showing the
 
 Here we have used a sample API with some data in it and used that API to get data and using GET method and edit data and save it using POST Method.
 
+**Mock API used:**
+
+https://private-b02bbd-assignement2.apiary-mock.com/questions
+
 Below is the Link for running application:
 
 https://site-944328.easy-ci.com/
