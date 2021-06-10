@@ -1,0 +1,35 @@
+*{
+  margin:0px;
+  padding:0px;
+}
+body{
+  background:#f6f6f6;
+}
+.section{
+  /* padding:2rem; */
+}
+.section-detail .container,.section-array-detail .container{
+  background-color: white;
+  padding:2rem;
+  padding-top:1rem;
+  margin-bottom: 2rem;
+}
+#loading{
+  position: fixed;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+  margin: auto;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none !important;
+}
+.flex{
+  display: flex;
+}
